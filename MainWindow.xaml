@@ -8,47 +8,58 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Height="56" Margin="0,34,0,0" VerticalAlignment="Top" Width="611" Orientation="Horizontal">
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
-            <uc:MachineCell Number="1"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="191*"/>
+            <ColumnDefinition Width="209*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="76*"/>
+            <RowDefinition Height="136*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Height="56" Margin="0,85,0,0" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Button Content="влево(" Height="46" Width="63"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <Button Content="вправо)" Height="46" Width="72" Grid.Column="1"/>
         </StackPanel>
-        <Button Content="влево(" HorizontalAlignment="Left" Height="46" Margin="18,39,0,0" VerticalAlignment="Top" Width="63"/>
-        <Button Content="вправо)" HorizontalAlignment="Left" Height="46" Margin="710,39,0,0" VerticalAlignment="Top" Width="72"/>
+
+        <Label Content="Алфавит машины" HorizontalAlignment="Left" Margin="31,7,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="106"/>
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="31,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="286" Grid.Row="1"/>
+        <DataGrid Margin="10,10,10,10" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="1" Grid.Column="1"/>
 
 
     </Grid>
