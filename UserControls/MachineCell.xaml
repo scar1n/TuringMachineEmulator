@@ -7,9 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel>
-            <Label Content="{Binding Number}" VerticalAlignment="Top" HorizontalAlignment="Center" x:Name ="number"/>
-            <TextBox TextWrapping="Wrap" Text="{Binding CellValue}" HorizontalAlignment="Center" MaxLength="1" x:Name ="cellValue" TextChanged="cellValue_TextChanged"/>
+        <StackPanel Margin="3">
+            <Label FontSize="30" Content="{Binding Number}" VerticalAlignment="Top" HorizontalAlignment="Center" x:Name ="number"/>
+            <TextBox FontSize="30" TextWrapping="Wrap" Text="{Binding CellValue}" HorizontalAlignment="Center" MaxLength="1" x:Name ="cellValue" TextChanged="cellValue_TextChanged"/>
         </StackPanel>
     </Grid>
 </UserControl>
