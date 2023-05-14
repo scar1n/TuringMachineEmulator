@@ -25,5 +25,9 @@ namespace TuringMachineEmulator
             InitializeComponent();
         }
 
+        private void AlphabetTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
+        }
     }
 }

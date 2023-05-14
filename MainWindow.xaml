@@ -58,7 +58,7 @@
 
         <StackPanel Grid.Column="0" Grid.Row="2">
             <Label FontSize ="20" Content="Алфавит машины" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top"  Height="40" Width="170"/>
-            <TextBox FontSize ="27" HorizontalAlignment="Left" Height="45" Margin="30,15,0,0" TextWrapping="Wrap" Text="" Width="400" Grid.Row="1" MaxLines="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox FontSize ="27" HorizontalAlignment="Left" Height="45" Margin="30,15,0,0" TextWrapping="Wrap" Text="" Width="400" Grid.Row="1" MaxLines="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="AlphabetTB" TextChanged="AlphabetTB_TextChanged"/>
             <Label FontSize ="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="30,40,0,0" Content="Коментарии"/>
             <TextBox FontSize ="20" Margin="20" Padding="10" TextWrapping="Wrap" Text="" Grid.Row="1" ScrollViewer.CanContentScroll="True" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True"/>
         </StackPanel>
