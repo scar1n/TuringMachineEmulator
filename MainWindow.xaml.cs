@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TuringMachineEmulator.MTComponents;
 
 namespace TuringMachineEmulator
 {
@@ -20,14 +21,16 @@ namespace TuringMachineEmulator
     /// </summary>
     public partial class MainWindow : Window
     {
+        public TuringMachine turingMachine;
         public MainWindow()
         {
             InitializeComponent();
+            turingMachine = new TuringMachine();
         }
 
-        private void AlphabetTB_TextChanged(object sender, TextChangedEventArgs e)
+        public void AlphabetTB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
+            turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
         }
     }
 }

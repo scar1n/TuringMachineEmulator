@@ -31,14 +31,10 @@ namespace TuringMachineEmulator.UserControls
 
         private void cellValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if (cellValue.Text != "")
+            //if (!MachineAlphabet.SymbolInAlphabet(cellValue.Text[0]))
             //{
             //    cellValue.Text = "#";
             //}
-            if (!MachineAlphabet.SymbolInAlphabet(cellValue.Text[0]))
-            {
-                cellValue.Text = "#";
-            }
         }
     }
 }

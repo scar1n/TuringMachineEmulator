@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TuringMachineEmulator
+namespace TuringMachineEmulator.MTComponents
 {
-    static class MachineAlphabet
+    public class MachineAlphabet
     {
-        static List<char> Alphabet = new List<char>();
-        public static void ResetAlphabet(string text)
+        public List<char> Alphabet = new List<char>();
+        public MachineAlphabet(MachineAlphabet alphabet) 
+        {
+            Alphabet = alphabet.Alphabet;
+        }
+        public void ResetAlphabet(string text)
         {
             Alphabet.Clear();
             foreach (char c in text)
@@ -17,7 +21,7 @@ namespace TuringMachineEmulator
                 Alphabet.Add(c);
             }
         }
-        public static bool SymbolInAlphabet(char c)
+        public bool SymbolInAlphabet(char c)
         {
             return Alphabet.Contains(c);
         }
