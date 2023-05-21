@@ -14,9 +14,9 @@ namespace TuringMachineEmulator
         public MachineAlphabet MachineAlphabet;
         public TuringMachine()
         {
-            Tape = new MachineTape();
-            StateTable = new MachineStateTable();
+            Tape = new MachineTape(40);
             MachineAlphabet = new MachineAlphabet();
+            StateTable = new MachineStateTable(MachineAlphabet);
         }
     }
 }

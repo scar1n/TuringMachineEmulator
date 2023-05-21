@@ -8,7 +8,11 @@ namespace TuringMachineEmulator.MTComponents
 {
     public class MachineAlphabet
     {
-        public List<char> Alphabet = new List<char>();
+        public List<char> Alphabet;
+        public MachineAlphabet()
+        {
+            Alphabet = new List<char>();
+        }
         public MachineAlphabet(MachineAlphabet alphabet) 
         {
             Alphabet = alphabet.Alphabet;

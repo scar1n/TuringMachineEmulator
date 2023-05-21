@@ -21,16 +21,43 @@ namespace TuringMachineEmulator
     /// </summary>
     public partial class MainWindow : Window
     {
-        public TuringMachine turingMachine;
+        private TuringMachine turingMachine ;
         public MainWindow()
         {
             InitializeComponent();
             turingMachine = new TuringMachine();
+            ResetStateTable();
         }
-
+        private void ResetStateTable()
+        {
+            StatesTableDG.BeginEdit();
+            StatesTableDG.ItemsSource = turingMachine.StateTable.States;
+            StatesTableDG.EndInit();
+        }
         public void AlphabetTB_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //if (turingMachine.MachineAlphabet.SymbolInAlphabet(AlphabetTB.Text.Last())) 
+            //{
+            //    AlphabetTB.Text = AlphabetTB.Text.Remove(AlphabetTB.Text.Length - 1);
+            //    return;
+            //}
+            //else
+            //{
+            //    turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
+            //}
             turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
+        }
+
+        private void AddStateButton_Click(object sender, RoutedEventArgs e)
+        {
+            turingMachine.StateTable.AddState(turingMachine.MachineAlphabet);
+            ResetStateTable();
+        }
+
+        private void DelStateButton_Click(object sender, RoutedEventArgs e)
+        {
+            turingMachine.StateTable.DeleteState();
+            ResetStateTable();
         }
     }
 }

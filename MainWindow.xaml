@@ -13,12 +13,19 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="14*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
-        <Button Content="🢀" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10"/>
-        <StackPanel Margin="10" Height="100" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="1160">
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Height="70" Width="120" Content="Старт"/>
+            <Button Height="70" Width="120" Content="Стоп"/>
+            <Button Height="70" Width="120"/>
+        </StackPanel>
+        <Button Content="🢀" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Grid.Row="2"/>
+        <StackPanel Margin="0,0,0,10" Height="100" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="1160" Grid.Row="2" x:Name ="tapee">
             <uc:MachineCell CellValue="#" Number="1"/>
             <uc:MachineCell CellValue="#" Number="2"/>
             <uc:MachineCell CellValue="#" Number="3"/>
@@ -54,15 +61,22 @@
             <uc:MachineCell CellValue="#" Number="33"/>
             <uc:MachineCell CellValue="#" Number="34"/>
         </StackPanel>
-        <Button Content="🢂" Height="100" Width="100" Grid.Column="1" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Button Content="🢂" Height="100" Width="100" Grid.Column="1" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2"/>
 
-        <StackPanel Grid.Column="0" Grid.Row="2">
+        <StackPanel Grid.Column="0" Grid.Row="4">
             <Label FontSize ="20" Content="Алфавит машины" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top"  Height="40" Width="170"/>
-            <TextBox FontSize ="27" HorizontalAlignment="Left" Height="45" Margin="30,15,0,0" TextWrapping="Wrap" Text="" Width="400" Grid.Row="1" MaxLines="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="AlphabetTB" TextChanged="AlphabetTB_TextChanged"/>
+            <TextBox FontSize ="27" HorizontalAlignment="Left" Height="45" Margin="30,15,0,0" TextWrapping="Wrap" Text="" Width="400" Grid.Row="1" MaxLines="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="AlphabetTB" TextChanged="AlphabetTB_TextChanged" UndoLimit="1"/>
             <Label FontSize ="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="30,40,0,0" Content="Коментарии"/>
-            <TextBox FontSize ="20" Margin="20" Padding="10" TextWrapping="Wrap" Text="" Grid.Row="1" ScrollViewer.CanContentScroll="True" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+            <TextBox FontSize ="20" Margin="20" Padding="10" TextWrapping="Wrap" Text="" Grid.Row="1" ScrollViewer.CanContentScroll="True" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True" Height="155"/>
         </StackPanel>
-        <DataGrid Padding="30" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" Grid.Row="2"/>
+        <StackPanel Grid.Column="1" Grid.Row="4">
+            <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
+                <Label FontSize ="25" Content="Таблица состояний" Margin="20,0,300,0"/>
+                <Button FontSize ="20" Width="100" Margin="3" Content="Добавить" x:Name="AddStateButton" Click="AddStateButton_Click"/>
+                <Button FontSize ="20" Width="100" Margin="3" Content="Удалить" x:Name="DelStateButton" Click="DelStateButton_Click"/>
+            </StackPanel>
+            <DataGrid Margin="20" x:Name="StatesTableDG" Height="303"/>
+        </StackPanel>
 
 
     </Grid>
