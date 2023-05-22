@@ -8,18 +8,24 @@ namespace TuringMachineEmulator.MTComponents
 {
     class MachineAction
     {
-        private char ActionChar;
-        private string? Direction; //l_ - left, r_ - right, _ - steps count
-        private char? CharForReplace;
-        private MachineState? NextState;
+        public char ActionChar;
+        private char CharForReplace;
+        private string Direction; //l_ - left, r_ - right, _ - steps count
+        private string NextState;
+
         public MachineAction(char actionChar)
         {
             ActionChar = actionChar;
         }
-
-        public override string ToString()
+        public override string ToString() // primer '1'-l2-1
         {
-            return base.ToString();
+            return $"{CharForReplace}-{Direction}-{NextState}";
+        }
+        public void OverrideAction(string actionStr)
+        {
+            ActionChar = actionStr.Split('-')[0][0];
+            Direction = actionStr.Split('-')[1];
+            NextState = actionStr.Split('-')[2];
         }
     }
 }

@@ -33,30 +33,33 @@ namespace TuringMachineEmulator.MTComponents
         }
         public void CarriageStep(int count)
         {
-            for (int i = 0; i < count; i++)
-            {
-                CurrentCellNumber++;
-            }
+            CurrentCellNumber += count;
         }
         public void CarriageReturn(int count)
         {
-            for (int i = 0; i < count; i++)
-            {
-                CurrentCellNumber--;
-            }
+            CurrentCellNumber -= count;
+
         }
         public void ChangeCurrentCellValue(char value)
         {
             Tape.FirstOrDefault(s => s.CellNumber == CurrentCellNumber).CellValue = value;
         }
-        
-        private void AddCellToStart()
+
+        public void AddCellToStart()
         {
             Tape.Insert(0,new MachineCell(Tape.FirstOrDefault().CellNumber - 1));
         }
-        private void AddCellToEnd()
+        public void AddCellToEnd()
         {
             Tape.Add(new MachineCell(Tape.Last().CellNumber + 1));
+        }
+        public MachineCell GetCell(int number)
+        {
+            return Tape.FirstOrDefault(p => p.CellNumber == number);
+        }
+        public void ChageValue(int number, char value)
+        {
+            Tape[Tape.FindIndex(p => p.CellNumber == number)].CellValue = value;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,14 +22,36 @@ namespace TuringMachineEmulator
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TuringMachine turingMachine ;
+        private TuringMachine turingMachine;
         public MainWindow()
         {
             InitializeComponent();
             turingMachine = new TuringMachine();
-            ResetStateTable();
+            UpdateStateTable();
+            UpdateTape(turingMachine.Tape);
         }
-        private void ResetStateTable()
+        private void UpdateTape(MachineTape tape)
+        {
+            int index = tape.CurrentCellNumber - ((TapeSP.Children.Count - 1) / 2);
+            
+            foreach (UserControls.MachineCell c in TapeSP.Children)
+            {
+                var temp = tape.GetCell(index++);
+                c.Number = temp.CellNumber.ToString();
+                c.CellValue = temp.CellValue.ToString();
+
+                c.DataContext = new UserControls.MachineCell(temp.CellValue.ToString(), temp.CellNumber.ToString());
+            }
+
+        }
+        private void SaveTape(MachineTape tape) 
+        {
+            foreach (UserControls.MachineCell c in TapeSP.Children)
+            {
+                tape.ChageValue(int.Parse(c.Number), c.CellValue[0]);
+            }
+        }
+        private void UpdateStateTable()
         {
             StatesTableDG.BeginEdit();
             StatesTableDG.ItemsSource = turingMachine.StateTable.States;
@@ -51,13 +74,35 @@ namespace TuringMachineEmulator
         private void AddStateButton_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.StateTable.AddState(turingMachine.MachineAlphabet);
-            ResetStateTable();
+            UpdateStateTable();
         }
 
         private void DelStateButton_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.StateTable.DeleteState();
-            ResetStateTable();
+            UpdateStateTable();
+        }
+
+        private void CarriegeStep_Click(object sender, RoutedEventArgs e)
+        {
+            turingMachine.Tape.CarriageStep(1);
+            UpdateTape(turingMachine.Tape);
+
+        }
+
+        private void CarriegeReturn_Click(object sender, RoutedEventArgs e)
+        {
+            turingMachine.Tape.CarriageReturn(1);
+            UpdateTape(turingMachine.Tape);
+        }
+
+        private void TapeSP_TextInput(object sender, TextCompositionEventArgs e)
+        {
+        }
+
+        private void TapeSP_KeyUp(object sender, KeyEventArgs e)
+        {
+            SaveTape(turingMachine.Tape);
         }
     }
 }

@@ -25,12 +25,20 @@ namespace TuringMachineEmulator.UserControls
             InitializeComponent();
             this.DataContext = this;
         }
+        public MachineCell(string v, string n)
+        {
+            InitializeComponent();
+            this.DataContext = this;
+            CellValue = v;
+            Number = n;
+        }
         public string CellValue { get; set; }
         
         public string Number { get; set; }
 
         private void cellValue_TextChanged(object sender, TextChangedEventArgs e)
         {
+            CellValue = cellValue.Text;
             //if (!MachineAlphabet.SymbolInAlphabet(cellValue.Text[0]))
             //{
             //    cellValue.Text = "#";
