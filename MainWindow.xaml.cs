@@ -64,38 +64,31 @@ namespace TuringMachineEmulator
             dg.DataContext = CreateDT(turingMachine).DefaultView;
             dg.EndInit();
         }
-
-
         private void AddStateButton_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.StateTable.AddState(turingMachine.MachineAlphabet);
             UpdateStateTable(StatesTableDG);
         }
-
         private void DelStateButton_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.StateTable.DeleteState();
             UpdateStateTable(StatesTableDG);
         }
-
         private void CarriegeStep_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.Tape.CarriageStep(1);
             UpdateTape(turingMachine.Tape);
 
         }
-
         private void CarriegeReturn_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.Tape.CarriageReturn(1);
             UpdateTape(turingMachine.Tape);
         }
-
         private void TapeSP_KeyUp(object sender, KeyEventArgs e)
         {
                 SaveTape(turingMachine.Tape, turingMachine.MachineAlphabet);
         }
-
         private void AlphabetTB_KeyUp(object sender, KeyEventArgs e)
         {
             if (!(AlphabetTB.Text == ""))
