@@ -57,29 +57,14 @@ namespace TuringMachineEmulator
         }
         private void UpdateStateTable(DataGrid dg)
         {
-            dg.BeginInit();
+            turingMachine.StateTable.ResetStatesActions(turingMachine.MachineAlphabet);
 
+            dg.BeginInit();
             dg.ItemsSource = from st in turingMachine.StateTable.States
                              select st.GetActions().ToList();
-            var temp = from st in turingMachine.StateTable.States
-                       select st.GetActions().ToList();
             dg.EndInit();
         }
-        private void AlphabetTB_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //if (turingMachine.MachineAlphabet.SymbolInAlphabet(AlphabetTB.Text.Last())) 
-            //{
-            //    AlphabetTB.Text = AlphabetTB.Text.Remove(AlphabetTB.Text.Length - 1);
-            //    return;
-            //}
-            //else
-            //{
-            //    turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
-            //}
-            turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
-            turingMachine.StateTable.ResetStatesActions(turingMachine.MachineAlphabet);
-            UpdateStateTable(StatesTableDG);
-        }
+
 
         private void AddStateButton_Click(object sender, RoutedEventArgs e)
         {
@@ -108,8 +93,21 @@ namespace TuringMachineEmulator
 
         private void TapeSP_KeyUp(object sender, KeyEventArgs e)
         {
-            SaveTape(turingMachine.Tape, turingMachine.MachineAlphabet);
+                SaveTape(turingMachine.Tape, turingMachine.MachineAlphabet);
         }
-       
+
+        private void AlphabetTB_KeyUp(object sender, KeyEventArgs e)
+        {
+          if (turingMachine.MachineAlphabet.SymbolInAlphabet(AlphabetTB.Text.Last()))
+            {
+                AlphabetTB.Text = turingMachine.MachineAlphabet.ToString();
+                return;
+            }
+          else {
+                turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
+                UpdateStateTable(StatesTableDG);
+            }
+            
+        }
     }
 }

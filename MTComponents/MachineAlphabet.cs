@@ -29,5 +29,14 @@ namespace TuringMachineEmulator.MTComponents
         {
             return Alphabet.Contains(c);
         }
+        public override string ToString()
+        {
+            string str = string.Empty;
+            foreach (char c in Alphabet)
+            {
+                str += c;
+            }
+            return str;
+        }
     }
 }
