@@ -9,9 +9,9 @@ namespace TuringMachineEmulator.MTComponents
     class MachineAction
     {
         public char ActionChar;
-        private char CharForReplace;
-        private string Direction; //l_ - left, r_ - right, _ - steps count
-        private string NextState;
+        private char CharForReplace = '1';
+        private string Direction = "1"; //l_ - left, r_ - right, _ - steps count
+        private string NextState = "1";
 
         public MachineAction(char actionChar)
         {

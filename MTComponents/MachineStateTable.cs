@@ -17,8 +17,15 @@ namespace TuringMachineEmulator.MTComponents
 
         public void DeleteState()
         {
-            States.Remove(States.Last());
+            if (States.Count > 1) { States.Remove(States.Last()); }
         }
         
+        public void ResetStatesActions(MachineAlphabet alph)
+        {
+            foreach (var state in States)
+            {
+                state.ResetActions(alph);
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -27,7 +28,7 @@ namespace TuringMachineEmulator
         {
             InitializeComponent();
             turingMachine = new TuringMachine();
-            UpdateStateTable();
+            UpdateStateTable(StatesTableDG);
             UpdateTape(turingMachine.Tape);
         }
         private void UpdateTape(MachineTape tape)
@@ -49,23 +50,22 @@ namespace TuringMachineEmulator
             foreach (UserControls.MachineCell c in TapeSP.Children)
             {
                 if (c.CellValue == "" || !(alphabet.SymbolInAlphabet(c.CellValue[0])))
-                {
                     c.cellValue.Text = "#";
-                }
                 else
-                {
                     tape.ChageValue(int.Parse(c.Number), c.CellValue[0]);
-                }
-
             }
         }
-        private void UpdateStateTable()
+        private void UpdateStateTable(DataGrid dg)
         {
-            StatesTableDG.BeginEdit();
-            StatesTableDG.ItemsSource = turingMachine.StateTable.States;
-            StatesTableDG.EndInit();
+            dg.BeginInit();
+
+            dg.ItemsSource = from st in turingMachine.StateTable.States
+                             select st.GetActions().ToList();
+            var temp = from st in turingMachine.StateTable.States
+                       select st.GetActions().ToList();
+            dg.EndInit();
         }
-        public void AlphabetTB_TextChanged(object sender, TextChangedEventArgs e)
+        private void AlphabetTB_TextChanged(object sender, TextChangedEventArgs e)
         {
             //if (turingMachine.MachineAlphabet.SymbolInAlphabet(AlphabetTB.Text.Last())) 
             //{
@@ -77,18 +77,20 @@ namespace TuringMachineEmulator
             //    turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
             //}
             turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
+            turingMachine.StateTable.ResetStatesActions(turingMachine.MachineAlphabet);
+            UpdateStateTable(StatesTableDG);
         }
 
         private void AddStateButton_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.StateTable.AddState(turingMachine.MachineAlphabet);
-            UpdateStateTable();
+            UpdateStateTable(StatesTableDG);
         }
 
         private void DelStateButton_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.StateTable.DeleteState();
-            UpdateStateTable();
+            UpdateStateTable(StatesTableDG);
         }
 
         private void CarriegeStep_Click(object sender, RoutedEventArgs e)
@@ -108,5 +110,6 @@ namespace TuringMachineEmulator
         {
             SaveTape(turingMachine.Tape, turingMachine.MachineAlphabet);
         }
+       
     }
 }
