@@ -44,11 +44,19 @@ namespace TuringMachineEmulator
             }
 
         }
-        private void SaveTape(MachineTape tape) 
+        private void SaveTape(MachineTape tape, MachineAlphabet alphabet) 
         {
             foreach (UserControls.MachineCell c in TapeSP.Children)
             {
-                tape.ChageValue(int.Parse(c.Number), c.CellValue[0]);
+                if (c.CellValue == "" || !(alphabet.SymbolInAlphabet(c.CellValue[0])))
+                {
+                    c.cellValue.Text = "#";
+                }
+                else
+                {
+                    tape.ChageValue(int.Parse(c.Number), c.CellValue[0]);
+                }
+
             }
         }
         private void UpdateStateTable()
@@ -96,13 +104,9 @@ namespace TuringMachineEmulator
             UpdateTape(turingMachine.Tape);
         }
 
-        private void TapeSP_TextInput(object sender, TextCompositionEventArgs e)
-        {
-        }
-
         private void TapeSP_KeyUp(object sender, KeyEventArgs e)
         {
-            SaveTape(turingMachine.Tape);
+            SaveTape(turingMachine.Tape, turingMachine.MachineAlphabet);
         }
     }
 }
