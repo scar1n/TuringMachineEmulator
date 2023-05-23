@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -60,8 +61,7 @@ namespace TuringMachineEmulator
             turingMachine.StateTable.ResetStatesActions(turingMachine.MachineAlphabet);
 
             dg.BeginInit();
-            dg.ItemsSource = from st in turingMachine.StateTable.States
-                             select st.GetActions().ToList();
+            dg.DataContext = CreateDT(turingMachine).DefaultView;
             dg.EndInit();
         }
 
@@ -98,16 +98,43 @@ namespace TuringMachineEmulator
 
         private void AlphabetTB_KeyUp(object sender, KeyEventArgs e)
         {
-          if (turingMachine.MachineAlphabet.SymbolInAlphabet(AlphabetTB.Text.Last()))
+            if (!(AlphabetTB.Text == ""))
             {
-                AlphabetTB.Text = turingMachine.MachineAlphabet.ToString();
-                return;
-            }
-          else {
+                string alph = string.Empty;
+
+                foreach (var item in AlphabetTB.Text.ToList().Distinct())
+                    alph += item;
+
+                AlphabetTB.Text = alph;
+
                 turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
                 UpdateStateTable(StatesTableDG);
             }
-            
+        }
+        private DataTable CreateDT(TuringMachine turingMachine)
+        {
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("Символ алфавита");
+
+            foreach (var item in turingMachine.MachineAlphabet.Alphabet)
+            {
+                dt.Rows.Add(item);
+            }
+
+            foreach (var item in turingMachine.StateTable.States)
+            {
+                dt.Columns.Add($"Q{item.number}");
+
+                foreach (var action in item.Actions)
+                {
+                    int index = turingMachine.MachineAlphabet.Alphabet.FindIndex(s => s == action.ActionChar);
+
+                    dt.Rows[index][item.number + 1] = action.ToString();
+                }
+            }
+
+            return dt;
         }
     }
 }
