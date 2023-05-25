@@ -22,7 +22,7 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Height="70" Width="120" Content="Старт"/>
             <Button Height="70" Width="120" Content="Стоп"/>
-            <Button Height="70" Width="120"/>
+            <Button Height="70" Width="120" />
         </StackPanel>
         <Button Content="🢀" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Grid.Row="2" x:Name="CarriegeReturn" Click="CarriegeReturn_Click"/>
         <StackPanel Margin="0,0,0,10" Height="100" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="1160" Grid.Row="2" x:Name ="TapeSP" KeyUp="TapeSP_KeyUp">
@@ -74,7 +74,7 @@
                 <Button FontSize ="20" Width="100" Margin="3" Content="Добавить" x:Name="AddStateButton" Click="AddStateButton_Click"/>
                 <Button FontSize ="20" Width="100" Margin="3" Content="Удалить" x:Name="DelStateButton" Click="DelStateButton_Click"/>
             </StackPanel>
-            <DataGrid ItemsSource="{Binding}" Margin="20" x:Name="StatesTableDG"/>
+            <DataGrid ItemsSource="{Binding}" Margin="20" x:Name="StatesTableDG" CellEditEnding="StatesTableDG_CellEditEnding"/>
         </StackPanel>
 
 

@@ -29,6 +29,7 @@ namespace TuringMachineEmulator
         {
             InitializeComponent();
             turingMachine = new TuringMachine();
+            ResetStateTable(turingMachine.Tape);
             UpdateStateTable(StatesTableDG);
             UpdateTape(turingMachine.Tape);
         }
@@ -56,10 +57,12 @@ namespace TuringMachineEmulator
                     tape.ChageValue(int.Parse(c.Number), c.CellValue[0]);
             }
         }
-        private void UpdateStateTable(DataGrid dg)
+        private void ResetStateTable(MachineTape tape)
         {
             turingMachine.StateTable.ResetStatesActions(turingMachine.MachineAlphabet);
-
+        }
+        private void UpdateStateTable(DataGrid dg)
+        {
             dg.BeginInit();
             dg.DataContext = CreateDT(turingMachine).DefaultView;
             dg.EndInit();
@@ -101,6 +104,7 @@ namespace TuringMachineEmulator
                 AlphabetTB.Text = alph;
 
                 turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
+                ResetStateTable(turingMachine.Tape);
                 UpdateStateTable(StatesTableDG);
             }
         }
@@ -108,7 +112,7 @@ namespace TuringMachineEmulator
         {
             DataTable dt = new DataTable();
 
-            dt.Columns.Add("Символ алфавита");
+            dt.Columns.Add("Символ алфавита", typeof(char));
 
             foreach (var item in turingMachine.MachineAlphabet.Alphabet)
             {
@@ -129,5 +133,22 @@ namespace TuringMachineEmulator
 
             return dt;
         }
+
+
+        private void StatesTableDG_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            int column = e.Column.DisplayIndex;
+            var test = (e.Row.Item as DataRowView).Row.ItemArray[0].ToString()[0];
+            var test1 = (e.EditingElement as TextBox).Text;
+
+
+            if (e.EditingElement as TextBox != null)
+            {
+                turingMachine.StateTable.States[column - 1].OverrideAction(
+                    (e.Row.Item as DataRowView).Row.ItemArray[0].ToString()[0],
+                    (e.EditingElement as TextBox).Text);
+            }
+        }
+
     }
 }

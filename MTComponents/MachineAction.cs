@@ -23,7 +23,7 @@ namespace TuringMachineEmulator.MTComponents
         }
         public void OverrideAction(string actionStr)
         {
-            ActionChar = actionStr.Split('-')[0][0];
+            CharForReplace = actionStr.Split('-')[0][0];
             Direction = actionStr.Split('-')[1];
             NextState = actionStr.Split('-')[2];
         }
