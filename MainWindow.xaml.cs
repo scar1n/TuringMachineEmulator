@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
+﻿using System.Data;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TuringMachineEmulator.MTComponents;
 
 namespace TuringMachineEmulator
@@ -67,6 +55,31 @@ namespace TuringMachineEmulator
             dg.DataContext = CreateDT(turingMachine).DefaultView;
             dg.EndInit();
         }
+        private DataTable CreateDT(TuringMachine turingMachine)
+        {
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("Символ алфавита", typeof(char));
+
+
+            foreach (var item in turingMachine.MachineAlphabet.Alphabet)
+            {
+                dt.Rows.Add(item);
+            }
+
+            foreach (var item in turingMachine.StateTable.States)
+            {
+                dt.Columns.Add($"Q{item.number}");
+
+                foreach (var action in item.Actions)
+                {
+                    int index = turingMachine.MachineAlphabet.Alphabet.FindIndex(s => s == action.ActionChar);
+
+                    dt.Rows[index][item.number + 1] = action.ToString();
+                }
+            }
+            return dt;
+        }
         private void AddStateButton_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.StateTable.AddState(turingMachine.MachineAlphabet);
@@ -108,33 +121,6 @@ namespace TuringMachineEmulator
                 UpdateStateTable(StatesTableDG);
             }
         }
-        private DataTable CreateDT(TuringMachine turingMachine)
-        {
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add("Символ алфавита", typeof(char));
-
-            foreach (var item in turingMachine.MachineAlphabet.Alphabet)
-            {
-                dt.Rows.Add(item);
-            }
-
-            foreach (var item in turingMachine.StateTable.States)
-            {
-                dt.Columns.Add($"Q{item.number}");
-
-                foreach (var action in item.Actions)
-                {
-                    int index = turingMachine.MachineAlphabet.Alphabet.FindIndex(s => s == action.ActionChar);
-
-                    dt.Rows[index][item.number + 1] = action.ToString();
-                }
-            }
-
-            return dt;
-        }
-
-
         private void StatesTableDG_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             int column = e.Column.DisplayIndex;
@@ -149,6 +135,5 @@ namespace TuringMachineEmulator
                     (e.EditingElement as TextBox).Text);
             }
         }
-
     }
 }

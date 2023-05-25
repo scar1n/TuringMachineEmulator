@@ -74,7 +74,7 @@
                 <Button FontSize ="20" Width="100" Margin="3" Content="Добавить" x:Name="AddStateButton" Click="AddStateButton_Click"/>
                 <Button FontSize ="20" Width="100" Margin="3" Content="Удалить" x:Name="DelStateButton" Click="DelStateButton_Click"/>
             </StackPanel>
-            <DataGrid ItemsSource="{Binding}" Margin="20" x:Name="StatesTableDG" CellEditEnding="StatesTableDG_CellEditEnding"/>
+            <DataGrid ItemsSource="{Binding}" Margin="20" x:Name="StatesTableDG" CellEditEnding="StatesTableDG_CellEditEnding" FontSize="18" FontFamily="Arial" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" MinColumnWidth="50"/>
         </StackPanel>
 
 
