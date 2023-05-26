@@ -20,14 +20,14 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Height="70" Width="120" Content="Старт"/>
-            <Button Height="70" Width="120" Content="Стоп"/>
+            <Button Height="70" Width="120" Content="Запуск" Click="Button_Click"/>
+            <Button Height="70" Width="120" Content="Один шаг"/>
             <Button Height="70" Width="120" />
         </StackPanel>
         <Button Content="🢀" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Grid.Row="2" x:Name="CarriegeReturn" Click="CarriegeReturn_Click"/>
         <StackPanel Margin="0,0,0,10" Height="100" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="1160" Grid.Row="2" x:Name ="TapeSP" KeyUp="TapeSP_KeyUp">
-            <uc:MachineCell CellValue="#" Number="-11"/>
-            <uc:MachineCell CellValue="#" Number="21"/>
+            <uc:MachineCell CellValue="#" Number="31"/>
+            <uc:MachineCell CellValue="#" Number="31"/>
             <uc:MachineCell CellValue="#" Number="31"/>
             <uc:MachineCell CellValue="#" Number="41"/>
             <uc:MachineCell CellValue="#" Number="51"/>

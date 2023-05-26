@@ -35,6 +35,10 @@ namespace TuringMachineEmulator.MTComponents
             }
             return output;
         }
+        public MachineAction GetActualAction(char c)
+        {
+            return Actions.FirstOrDefault(s => s.ActionChar == c);
+        }
         public void OverrideAction(char actionChar,string actionStr)
         {
             MachineAction? action = Actions.FirstOrDefault(s => s.ActionChar == actionChar);

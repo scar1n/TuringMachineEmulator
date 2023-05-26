@@ -9,9 +9,10 @@ namespace TuringMachineEmulator.MTComponents
     class MachineAction
     {
         public char ActionChar;
-        private char CharForReplace = '1';
-        private string Direction = "1"; //l_ - left, r_ - right, _ - steps count
-        private string NextState = "1";
+        public char CharForReplace = '1';
+        public char Direction = 'l';
+        public int StepsCount = 1;
+        public int NextState = 1;
 
         public MachineAction(char actionChar)
         {
@@ -19,13 +20,14 @@ namespace TuringMachineEmulator.MTComponents
         }
         public override string ToString() // primer '1'-l2-1
         {
-            return $"{CharForReplace}-{Direction}-{NextState}";
+            return $"{CharForReplace}-{Direction}{StepsCount}-{NextState}";
         }
         public void OverrideAction(string actionStr)
         {
             CharForReplace = actionStr.Split('-')[0][0];
-            Direction = actionStr.Split('-')[1];
-            NextState = actionStr.Split('-')[2];
+            Direction = actionStr.Split('-')[1][0];
+            StepsCount = int.Parse(actionStr.Split('-')[1][1].ToString());
+            NextState = int.Parse(actionStr.Split('-')[2].ToString());
         }
     }
 }

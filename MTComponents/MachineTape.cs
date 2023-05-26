@@ -57,6 +57,10 @@ namespace TuringMachineEmulator.MTComponents
         {
             return Tape.FirstOrDefault(p => p.CellNumber == number);
         }
+        public char GetCurrentValue()
+        {
+            return Tape.Find(p => p.CellNumber == CurrentCellNumber).CellValue;
+        }
         public void ChageValue(int number, char value)
         {
             Tape[Tape.FindIndex(p => p.CellNumber == number)].CellValue = value;

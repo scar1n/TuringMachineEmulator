@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -134,6 +135,12 @@ namespace TuringMachineEmulator
                     (e.Row.Item as DataRowView).Row.ItemArray[0].ToString()[0],
                     (e.EditingElement as TextBox).Text);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) // кнопка запуска
+        {
+            turingMachine.Step();
+            UpdateTape(turingMachine.Tape);
         }
     }
 }
