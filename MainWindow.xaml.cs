@@ -19,8 +19,8 @@ namespace TuringMachineEmulator
             InitializeComponent();
             turingMachine = new TuringMachine();
             ResetStateTable(turingMachine.Tape);
-            UpdateStateTable(StatesTableDG);
             UpdateTape(turingMachine.Tape);
+            UpdateStateTable(StatesTableDG);
         }
         private void UpdateTape(MachineTape tape)
         {
@@ -140,6 +140,7 @@ namespace TuringMachineEmulator
         private void Button_Click(object sender, RoutedEventArgs e) // кнопка запуска
         {
             turingMachine.Step();
+            stateLabel.Content = $"Текущее состояние: Q{turingMachine.CurrentState.number}";
             UpdateTape(turingMachine.Tape);
         }
     }

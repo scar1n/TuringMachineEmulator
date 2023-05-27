@@ -20,46 +20,50 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Height="70" Width="120" Content="Запуск" Click="Button_Click" Margin="2"/>
-            <Button Height="70" Width="120" Content="Один шаг" Margin="2"/>
-            <Button Height="70" Width="120" Content="Сброс состояния" Margin="2"/>
+            <Button Height="70" Width="120" Content="Запуск" Margin="2"/>
+            <Button Height="70" Width="120" Content="Стоп" Margin="2"/>
+            <Button Height="70" Width="120" Content="Один шаг" Click="Button_Click" Margin="2"/>
             <Button Height="70" Width="140" Content="Сброс значений ячеек" Margin="2"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Label FontSize ="30" Content="Текущее состояние: Q0"   x:Name="stateLabel" VerticalAlignment="Center" />
+            <Button FontSize="18" Height="75" Width="150" Content="Сброс состояния" Margin="8"/>
         </StackPanel>
         <Button Content="🢀" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Grid.Row="2" x:Name="CarriegeReturn" Click="CarriegeReturn_Click"/>
         <StackPanel Margin="0,0,0,10" Height="100" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="1160" Grid.Row="2" x:Name ="TapeSP" KeyUp="TapeSP_KeyUp">
-            <uc:MachineCell CellValue="#" Number="31"/>
-            <uc:MachineCell CellValue="#" Number="31"/>
-            <uc:MachineCell CellValue="#" Number="31"/>
-            <uc:MachineCell CellValue="#" Number="41"/>
-            <uc:MachineCell CellValue="#" Number="51"/>
-            <uc:MachineCell CellValue="#" Number="61"/>
-            <uc:MachineCell CellValue="#" Number="71"/>
-            <uc:MachineCell CellValue="#" Number="81"/>
-            <uc:MachineCell CellValue="#" Number="91"/>
-            <uc:MachineCell CellValue="#" Number="10"/>
-            <uc:MachineCell CellValue="#" Number="11"/>
-            <uc:MachineCell CellValue="#" Number="12"/>
-            <uc:MachineCell CellValue="#" Number="13"/>
-            <uc:MachineCell CellValue="#" Number="14"/>
-            <uc:MachineCell CellValue="#" Number="15"/>
-            <uc:MachineCell CellValue="#" Number="16"/>
-            <uc:MachineCell CellValue="#" Number="17" Background="#FFBFF5A2"/>
-            <uc:MachineCell CellValue="#" Number="18"/>
-            <uc:MachineCell CellValue="#" Number="19"/>
-            <uc:MachineCell CellValue="#" Number="20"/>
-            <uc:MachineCell CellValue="#" Number="21"/>
-            <uc:MachineCell CellValue="#" Number="22"/>
-            <uc:MachineCell CellValue="#" Number="23"/>
-            <uc:MachineCell CellValue="#" Number="24"/>
-            <uc:MachineCell CellValue="#" Number="25"/>
-            <uc:MachineCell CellValue="#" Number="26"/>
-            <uc:MachineCell CellValue="#" Number="27"/>
-            <uc:MachineCell CellValue="#" Number="28"/>
-            <uc:MachineCell CellValue="#" Number="29"/>
-            <uc:MachineCell CellValue="#" Number="30"/>
-            <uc:MachineCell CellValue="#" Number="31"/>
-            <uc:MachineCell CellValue="#" Number="32"/>
-            <uc:MachineCell CellValue="#" Number="33"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1" Background="#FFBFF5A2"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
+            <uc:MachineCell CellValue="#" Number="1"/>
         </StackPanel>
         <Button Content="🢂" Height="100" Width="100" Grid.Column="1" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" x:Name="CarriegeStep" Click="CarriegeStep_Click"/>
 

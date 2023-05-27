@@ -12,6 +12,7 @@ namespace TuringMachineEmulator.MTComponents
         public MachineAlphabet()
         {
             Alphabet = new List<char>();
+            Alphabet.Add('#');
         }
         public MachineAlphabet(MachineAlphabet alphabet) 
         {
