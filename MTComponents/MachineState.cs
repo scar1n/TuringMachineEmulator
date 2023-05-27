@@ -24,7 +24,7 @@ namespace TuringMachineEmulator.MTComponents
         private void CreateActions(MachineAlphabet machineAlphabet)
         {
             foreach (char item in machineAlphabet.Alphabet)
-                Actions.Add(new MachineAction(item));
+                Actions.Add(new MachineAction(number,item));
         }
         public List<string> GetActions()
         {

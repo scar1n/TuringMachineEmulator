@@ -9,14 +9,18 @@ namespace TuringMachineEmulator.MTComponents
     class MachineAction
     {
         public char ActionChar;
-        public char CharForReplace = '1';
-        public char Direction = 'l';
-        public int StepsCount = 1;
-        public int NextState = 1;
+        public char CharForReplace;
+        public char Direction;
+        public int StepsCount;
+        public int NextState;
 
-        public MachineAction(char actionChar)
+        public MachineAction(int number, char actionChar)
         {
             ActionChar = actionChar;
+            CharForReplace = actionChar;
+            Direction = 'r';
+            StepsCount = 1;
+            NextState = number;
         }
         public override string ToString() // primer '1'-l2-1
         {
