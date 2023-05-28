@@ -136,7 +136,7 @@ namespace TuringMachineEmulator
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)//
         {
             turingMachine.Step();
             stateLabel.Content = $"Текущее состояние: Q{turingMachine.CurrentState.number}";
