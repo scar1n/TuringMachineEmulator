@@ -22,14 +22,10 @@ namespace TuringMachineEmulator.MTComponents
             Tape.Add(new MachineCell(0));
 
             for (int i = 1; i <= lLenght; i++)
-            {
                 AddCellToStart();
-            }
-            for (int i = 1; i <= rLenght; i++)
-            {
-                AddCellToEnd();
-            }
 
+            for (int i = 1; i <= rLenght; i++)
+                AddCellToEnd();
         }
         public void CarriageStep(int count)
         {

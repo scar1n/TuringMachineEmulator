@@ -20,10 +20,10 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Height="70" Width="120" Content="Запуск" Margin="2"/>
-            <Button Height="70" Width="120" Content="Стоп" Margin="2"/>
-            <Button Height="70" Width="120" Content="Один шаг" Click="Button_Click" Margin="2"/>
-            <Button Height="70" Width="140" Content="Сброс значений ячеек" Margin="2"/>
+            <Button Height="70" Width="120" Margin="2" Content="Запуск" />
+            <Button Height="70" Width="120" Margin="2" Content="Стоп"/>
+            <Button Height="70" Width="120" Margin="2" Content="Один шаг" Click="Button_Click"/>
+            <Button Height="70" Width="140" Margin="2" Content="Сброс значений ячеек"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <Label FontSize ="30" Content="Текущее состояние: Q0"   x:Name="stateLabel" VerticalAlignment="Center" />
