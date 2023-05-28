@@ -18,9 +18,8 @@ namespace TuringMachineEmulator
         {
             InitializeComponent();
             turingMachine = new TuringMachine();
-            ResetStateTable(turingMachine.Tape);
             UpdateTape(turingMachine.Tape);
-            UpdateStateTable(StatesTableDG);
+            ResetStateTable();
         }
         private void UpdateTape(MachineTape tape)
         {
@@ -46,11 +45,12 @@ namespace TuringMachineEmulator
                     tape.ChageValue(int.Parse(c.Number), c.CellValue[0]);
             }
         }
-        private void ResetStateTable(MachineTape tape)
+        private void ResetStateTable()
         {
             turingMachine.StateTable.ResetStatesActions(turingMachine.MachineAlphabet);
+            UpdateStateTableDG(StatesTableDG);
         }
-        private void UpdateStateTable(DataGrid dg)
+        private void UpdateStateTableDG(DataGrid dg)
         {
             dg.BeginInit();
             dg.DataContext = CreateDT(turingMachine).DefaultView;
@@ -84,12 +84,12 @@ namespace TuringMachineEmulator
         private void AddStateButton_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.StateTable.AddState(turingMachine.MachineAlphabet);
-            UpdateStateTable(StatesTableDG);
+            UpdateStateTableDG(StatesTableDG);
         }
         private void DelStateButton_Click(object sender, RoutedEventArgs e)
         {
             turingMachine.StateTable.DeleteState();
-            UpdateStateTable(StatesTableDG);
+            UpdateStateTableDG(StatesTableDG);
         }
         private void CarriegeStep_Click(object sender, RoutedEventArgs e)
         {
@@ -118,8 +118,7 @@ namespace TuringMachineEmulator
                 AlphabetTB.Text = alph;
 
                 turingMachine.MachineAlphabet.ResetAlphabet(AlphabetTB.Text);
-                ResetStateTable(turingMachine.Tape);
-                UpdateStateTable(StatesTableDG);
+                ResetStateTable();
             }
         }
         private void StatesTableDG_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
