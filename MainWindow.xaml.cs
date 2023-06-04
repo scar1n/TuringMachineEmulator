@@ -8,9 +8,6 @@ using TuringMachineEmulator.MTComponents;
 
 namespace TuringMachineEmulator
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public partial class MainWindow : Window
     {
         private TuringMachine turingMachine;
