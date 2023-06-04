@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Windows;
 using TuringMachineEmulator.MTComponents;
 
 namespace TuringMachineEmulator
