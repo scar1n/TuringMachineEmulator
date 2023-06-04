@@ -16,7 +16,6 @@ namespace TuringMachineEmulator
             MachineAlphabet = new MachineAlphabet();
             StateTable = new MachineStateTable(MachineAlphabet);
             CurrentState = StateTable.States[0];
-            MessageBox.Show("Всё загрузилось");
         }
         public void Step()
         {
