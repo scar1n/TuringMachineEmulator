@@ -17,6 +17,14 @@ namespace TuringMachineEmulator
             StateTable = new MachineStateTable(MachineAlphabet);
             CurrentState = StateTable.States[0];
         }
+        public void ResetTape()
+        {
+            Tape = new MachineTape(100);
+        }
+        public void ResetState()
+        {
+            CurrentState = StateTable.States[0];
+        }
         public void Step()
         {
             MachineAction CurrentAction = CurrentState.GetActualAction(Tape.GetCurrentValue());

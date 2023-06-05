@@ -138,5 +138,17 @@ namespace TuringMachineEmulator
             stateLabel.Content = $"Текущее состояние: Q{turingMachine.CurrentState.number}";
             UpdateTape(turingMachine.Tape);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            turingMachine.ResetTape();
+            UpdateTape(turingMachine.Tape);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            turingMachine.ResetState();
+            stateLabel.Content = $"Текущее состояние: Q{turingMachine.CurrentState.number}";
+        }
     }
 }
