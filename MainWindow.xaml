@@ -20,14 +20,14 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Height="70" Width="120" Margin="2" Content="Запуск" />
-            <Button Height="70" Width="120" Margin="2" Content="Стоп"/>
-            <Button Height="70" Width="120" Margin="2" Content="Один шаг" Click="Button_Click"/>
-            <Button Height="70" Width="140" Margin="2" Content="Сброс значений ячеек" Click="Button_Click_1"/>
+            <Button Height="70" Width="120" Margin="2" Content="Запуск" x:Name ="MachineStartBN" Click="MachineStartBN_Click"/>
+            <Button Height="70" Width="120" Margin="2" Content="Стоп" x:Name ="MachineStopBN" Click="MachineStopBN_Click"/>
+            <Button Height="70" Width="120" Margin="2" Content="Один шаг" x:Name ="OneStepBN" Click="OneStepBNClick"/>
+            <Button Height="70" Width="140" Margin="2" Content="Сброс значений ячеек" x:Name ="ResetTapeBN" Click="ResetTapeBNClick"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <Label FontSize ="30" Content="Текущее состояние: Q0"   x:Name="stateLabel" VerticalAlignment="Center" />
-            <Button FontSize="18" Height="75" Width="150" Content="Сброс состояния" Margin="8" Click="Button_Click_2"/>
+            <Button FontSize="18" Height="75" Width="150" Content="Сброс состояния" Margin="8" x:Name="ResetCurrentStateBN" Click="ResetCurrentStateBNClick"/>
         </StackPanel>
         <Button Content="🢀" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Grid.Row="2" x:Name="CarriegeReturn" Click="CarriegeReturn_Click"/>
         <StackPanel Margin="0,0,0,10" Height="100" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="1160" Grid.Row="2" x:Name ="TapeSP" KeyUp="TapeSP_KeyUp">

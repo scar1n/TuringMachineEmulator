@@ -1,8 +1,11 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using TuringMachineEmulator.MTComponents;
 
 namespace TuringMachineEmulator
@@ -10,12 +13,18 @@ namespace TuringMachineEmulator
     public partial class MainWindow : Window
     {
         private TuringMachine turingMachine;
+        private DispatcherTimer timer;
+        bool _MachineIsWorking = false;
+        const int stp = 5;
         public MainWindow()
         {
             InitializeComponent();
             turingMachine = new TuringMachine();
             UpdateTape(turingMachine.Tape);
             ResetStateTable();
+
+            timer = new DispatcherTimer();
+            timer.Tick += new EventHandler(Step);
         }
         private void UpdateTape(MachineTape tape)
         {
@@ -29,7 +38,7 @@ namespace TuringMachineEmulator
 
                 c.DataContext = new UserControls.MachineCell(temp.CellValue.ToString(), temp.CellNumber.ToString());
             }
-
+            
         }
         private void SaveTape(MachineTape tape, MachineAlphabet alphabet) 
         {
@@ -132,23 +141,50 @@ namespace TuringMachineEmulator
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)//
+        private void OneStepBNClick(object sender, RoutedEventArgs e)//
+        {
+            MachineStep();
+        }
+
+        private void ResetTapeBNClick(object sender, RoutedEventArgs e)
+        {
+            turingMachine.ResetTape();
+            UpdateTape(turingMachine.Tape);
+        }
+
+    private void ResetCurrentStateBNClick(object sender, RoutedEventArgs e)
+        {
+            turingMachine.ResetState();
+            stateLabel.Content = $"Текущее состояние: Q{turingMachine.CurrentState.number}";
+        }
+
+        private void MachineStartBN_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / stp);
+            _MachineIsWorking = true;
+            timer.Start();
+        }
+        private void Step(object sender, EventArgs e)
+        {
+            if (_MachineIsWorking)
+            {
+                MachineStep();
+            }
+            else
+            {
+                timer.Stop();
+            }
+        }
+        void MachineStep()
         {
             turingMachine.Step();
             stateLabel.Content = $"Текущее состояние: Q{turingMachine.CurrentState.number}";
             UpdateTape(turingMachine.Tape);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void MachineStopBN_Click(object sender, RoutedEventArgs e)
         {
-            turingMachine.ResetTape();
-            UpdateTape(turingMachine.Tape);
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            turingMachine.ResetState();
-            stateLabel.Content = $"Текущее состояние: Q{turingMachine.CurrentState.number}";
+            _MachineIsWorking = false;
         }
     }
 }
