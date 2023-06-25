@@ -36,10 +36,10 @@
             </Rectangle.Fill>
         </Rectangle>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Запуск" x:Name ="MachineStartBN" Click="MachineStartBN_Click"/>
-            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Стоп" x:Name ="MachineStopBN" Click="MachineStopBN_Click" IsEnabled="False"/>
-            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Один шаг" x:Name ="OneStepBN" Click="OneStepBNClick"/>
-            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Сброс значений ячеек" x:Name ="ResetTapeBN" Click="ResetTapeBNClick"/>
+            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Запуск" x:Name ="MachineStartBN" Click="MachineStartBN_Click" FontSize="18"/>
+            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Стоп" x:Name ="MachineStopBN" Click="MachineStopBN_Click" IsEnabled="False" FontSize="18"/>
+            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Один шаг" x:Name ="OneStepBN" Click="OneStepBNClick" FontSize="18"/>
+            <Button BorderBrush="Black" Background="White" Height="80" Width="160" Margin="2" Content="Сброс значений ячеек" x:Name ="ResetTapeBN" Click="ResetTapeBNClick" FontSize="14"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <Label FontSize ="30" Content="Текущее состояние: Q0"   x:Name="stateLabel" VerticalAlignment="Center" />
@@ -63,7 +63,7 @@
             <uc:MachineCell CellValue="#" Number="1"/>
             <uc:MachineCell CellValue="#" Number="1"/>
             <uc:MachineCell CellValue="#" Number="1"/>
-            <uc:MachineCell CellValue="#" Number="1" Background="#FFBFF5A2"/>
+            <uc:MachineCell CellValue="#" Number="1" Background="#FFBEFF9B"/>
             <uc:MachineCell CellValue="#" Number="1"/>
             <uc:MachineCell CellValue="#" Number="1"/>
             <uc:MachineCell CellValue="#" Number="1"/>
@@ -95,7 +95,7 @@
                 <Button BorderBrush="Black" Background="White" FontSize ="20" Width="100" Margin="3" Content="Добавить" x:Name="AddStateButton" Click="AddStateButton_Click"/>
                 <Button BorderBrush="Black" Background="White" FontSize ="20" Width="100" Margin="3" Content="Удалить" x:Name="DelStateButton" Click="DelStateButton_Click"/>
             </StackPanel>
-            <DataGrid ItemsSource="{Binding}" Margin="20" x:Name="StatesTableDG" CellEditEnding="StatesTableDG_CellEditEnding" FontSize="18" FontFamily="Arial" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" MinColumnWidth="50"/>
+            <DataGrid ItemsSource="{Binding}" Margin="20" x:Name="StatesTableDG" CellEditEnding="StatesTableDG_CellEditEnding" FontSize="20" FontFamily="Arial" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" MinColumnWidth="50" Background="White" BorderBrush="#FF7EC7FF"/>
         </StackPanel>
 
 
