@@ -66,7 +66,7 @@ namespace TuringMachineEmulator
             DataTable dt = new DataTable();
 
             dt.Columns.Add("Символ алфавита", typeof(char));
-
+            dt.Columns[0].ReadOnly = true;
 
             foreach (var item in turingMachine.MachineAlphabet.Alphabet)
             {
@@ -129,15 +129,35 @@ namespace TuringMachineEmulator
         private void StatesTableDG_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             int column = e.Column.DisplayIndex;
-            var test = (e.Row.Item as DataRowView).Row.ItemArray[0].ToString()[0];
-            var test1 = (e.EditingElement as TextBox).Text;
+            char actionSymbol = (e.Row.Item as DataRowView).Row.ItemArray[0].ToString()[0];
+            string actionString = (e.EditingElement as TextBox).Text;
 
-
-            if (e.EditingElement as TextBox != null)
+            try
             {
-                turingMachine.StateTable.States[column - 1].OverrideAction(
-                    (e.Row.Item as DataRowView).Row.ItemArray[0].ToString()[0],
-                    (e.EditingElement as TextBox).Text);
+                var splittedActionStr = actionString.Split('-');
+
+                if (!turingMachine.MachineAlphabet.SymbolInAlphabet(splittedActionStr[0][0]))
+                    throw new Exception();
+                
+                if (splittedActionStr[1][0] != 'l' && splittedActionStr[1][0] != 'r')
+                    throw new Exception();
+                    
+                int.Parse(splittedActionStr[1][1].ToString());
+
+                if (turingMachine.StateTable.States.FirstOrDefault(s => s.number == int.Parse(splittedActionStr[2].ToString())) == null)
+                    throw new Exception();
+
+                if (turingMachine.MachineAlphabet.SymbolInAlphabet(actionSymbol))
+                {
+                    if (e.EditingElement as TextBox != null)
+                        turingMachine.StateTable.States[column - 1].OverrideAction(actionSymbol, actionString);
+                }
+            }
+            catch (Exception)
+            {
+                (e.EditingElement as TextBox).Undo();
+                e.Cancel = true;
+                MessageBox.Show("Некорретный ввод значений действия состояния");
             }
         }
 
@@ -160,6 +180,8 @@ namespace TuringMachineEmulator
 
         private void MachineStartBN_Click(object sender, RoutedEventArgs e)
         {
+            ChangeWindowControlsEnable();
+
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / stp);
             _MachineIsWorking = true;
             timer.Start();
@@ -185,6 +207,21 @@ namespace TuringMachineEmulator
         private void MachineStopBN_Click(object sender, RoutedEventArgs e)
         {
             _MachineIsWorking = false;
+            ChangeWindowControlsEnable();
+        }
+        private void ChangeWindowControlsEnable()
+        {
+            CarriegeReturn.IsEnabled = !CarriegeReturn.IsEnabled;
+            CarriegeStep.IsEnabled = !CarriegeStep.IsEnabled;
+            MachineStartBN.IsEnabled = !MachineStartBN.IsEnabled;
+            MachineStopBN.IsEnabled = !MachineStopBN.IsEnabled;
+            OneStepBN.IsEnabled = !OneStepBN.IsEnabled;
+            ResetTapeBN.IsEnabled = !ResetTapeBN.IsEnabled;
+            AddStateButton.IsEnabled = !AddStateButton.IsEnabled;
+            DelStateButton.IsEnabled = !DelStateButton.IsEnabled;
+            ResetCurrentStateBN.IsEnabled = !ResetCurrentStateBN.IsEnabled;
+            StatesTableDG.IsEnabled = !StatesTableDG.IsEnabled;
+            AlphabetTB.IsEnabled = !AlphabetTB.IsEnabled;
         }
     }
 }

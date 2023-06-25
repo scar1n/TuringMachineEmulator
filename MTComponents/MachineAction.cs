@@ -13,7 +13,7 @@
             ActionChar = actionChar;
             CharForReplace = actionChar;
             Direction = 'r';
-            StepsCount = 1;
+            StepsCount = 0;
             NextState = number;
         }
         public override string ToString() // primer '1'-l2-1
@@ -22,10 +22,13 @@
         }
         public void OverrideAction(string actionStr)
         {
-            CharForReplace = actionStr.Split('-')[0][0];
-            Direction = actionStr.Split('-')[1][0];
-            StepsCount = int.Parse(actionStr.Split('-')[1][1].ToString());
-            NextState = int.Parse(actionStr.Split('-')[2].ToString());
+            var splittedActionStr = actionStr.Split('-');
+
+
+            CharForReplace = splittedActionStr[0][0];
+            Direction = splittedActionStr[1][0];
+            StepsCount = int.Parse(splittedActionStr[1][1].ToString());
+            NextState = int.Parse(splittedActionStr[2].ToString());
         }
     }
 }

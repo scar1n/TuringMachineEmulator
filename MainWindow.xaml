@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:TuringMachineEmulator"
         xmlns:uc="clr-namespace:TuringMachineEmulator.UserControls"
         mc:Ignorable="d"
-        Title="Эмулятор Машины Тьюринга" Height="700" Width="1400">
-    <Grid>
+        Title="Эмулятор Машины Тьюринга" Height="700" Width="1400" Background="#FFFAFCFF">
+    <Grid x:Name="windowGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="5*"/>
@@ -15,21 +15,37 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="15*"/>
+            <RowDefinition Height="150"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
+        <Rectangle Grid.Row ="0" Grid.ColumnSpan="2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFDBE3F1" Offset="1"/>
+                    <GradientStop Color="#FFC5DBFF"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Row ="2" Grid.ColumnSpan="2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFDBE3F1" Offset="1"/>
+                    <GradientStop Color="#FFC5DBFF"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Height="70" Width="120" Margin="2" Content="Запуск" x:Name ="MachineStartBN" Click="MachineStartBN_Click"/>
-            <Button Height="70" Width="120" Margin="2" Content="Стоп" x:Name ="MachineStopBN" Click="MachineStopBN_Click"/>
-            <Button Height="70" Width="120" Margin="2" Content="Один шаг" x:Name ="OneStepBN" Click="OneStepBNClick"/>
-            <Button Height="70" Width="140" Margin="2" Content="Сброс значений ячеек" x:Name ="ResetTapeBN" Click="ResetTapeBNClick"/>
+            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Запуск" x:Name ="MachineStartBN" Click="MachineStartBN_Click"/>
+            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Стоп" x:Name ="MachineStopBN" Click="MachineStopBN_Click" IsEnabled="False"/>
+            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Один шаг" x:Name ="OneStepBN" Click="OneStepBNClick"/>
+            <Button BorderBrush="Black" Background="White" Height="80" Width="140" Margin="2" Content="Сброс значений ячеек" x:Name ="ResetTapeBN" Click="ResetTapeBNClick"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <Label FontSize ="30" Content="Текущее состояние: Q0"   x:Name="stateLabel" VerticalAlignment="Center" />
-            <Button FontSize="18" Height="75" Width="150" Content="Сброс состояния" Margin="8" x:Name="ResetCurrentStateBN" Click="ResetCurrentStateBNClick"/>
+            <Button BorderBrush="Black" Background="White" FontSize="18" Height="75" Width="150" Content="Сброс состояния" Margin="8" x:Name="ResetCurrentStateBN" Click="ResetCurrentStateBNClick"/>
         </StackPanel>
-        <Button Content="🢀" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Grid.Row="2" x:Name="CarriegeReturn" Click="CarriegeReturn_Click"/>
+        <Button Content="🢀" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Grid.Row="2" x:Name="CarriegeReturn" Click="CarriegeReturn_Click" BorderBrush="Black" Background="White"/>
         <StackPanel Margin="0,0,0,10" Height="100" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="1160" Grid.Row="2" x:Name ="TapeSP" KeyUp="TapeSP_KeyUp">
             <uc:MachineCell CellValue="#" Number="1"/>
             <uc:MachineCell CellValue="#" Number="1"/>
@@ -65,7 +81,7 @@
             <uc:MachineCell CellValue="#" Number="1"/>
             <uc:MachineCell CellValue="#" Number="1"/>
         </StackPanel>
-        <Button Content="🢂" Height="100" Width="100" Grid.Column="1" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" x:Name="CarriegeStep" Click="CarriegeStep_Click"/>
+        <Button BorderBrush="Black" Background="White" Content="🢂" Height="100" Width="100" Grid.Column="1" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" x:Name="CarriegeStep" Click="CarriegeStep_Click"/>
 
         <StackPanel Grid.Column="0" Grid.Row="4">
             <Label FontSize ="20" Content="Алфавит машины" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top"  Height="40" Width="170"/>
@@ -76,8 +92,8 @@
         <StackPanel Grid.Column="1" Grid.Row="4">
             <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
                 <Label FontSize ="25" Content="Таблица состояний" Margin="20,0,300,0"/>
-                <Button FontSize ="20" Width="100" Margin="3" Content="Добавить" x:Name="AddStateButton" Click="AddStateButton_Click"/>
-                <Button FontSize ="20" Width="100" Margin="3" Content="Удалить" x:Name="DelStateButton" Click="DelStateButton_Click"/>
+                <Button BorderBrush="Black" Background="White" FontSize ="20" Width="100" Margin="3" Content="Добавить" x:Name="AddStateButton" Click="AddStateButton_Click"/>
+                <Button BorderBrush="Black" Background="White" FontSize ="20" Width="100" Margin="3" Content="Удалить" x:Name="DelStateButton" Click="DelStateButton_Click"/>
             </StackPanel>
             <DataGrid ItemsSource="{Binding}" Margin="20" x:Name="StatesTableDG" CellEditEnding="StatesTableDG_CellEditEnding" FontSize="18" FontFamily="Arial" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" MinColumnWidth="50"/>
         </StackPanel>
